@@ -15,19 +15,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const CustomNumPadScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class CustomNumPadScreen extends StatefulWidget {
+  const CustomNumPadScreen({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<CustomNumPadScreen> createState() => _CustomNumPadScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CustomNumPadScreenState extends State<CustomNumPadScreen> {
   late final TextEditingController _controller;
 
   @override
