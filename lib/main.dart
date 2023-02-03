@@ -79,7 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _inputNumberBetweenText(int value) {
     final currentNumbers = _controller.text;
-    final numbersBeforeCursor = currentNumbers.substring(0, cursorStartPosition);
+    final numbersBeforeCursor =
+        currentNumbers.substring(0, cursorStartPosition);
     final numbersAfterCursor = currentNumbers.substring(cursorStartPosition);
     _controller.value = _controller.value.copyWith(
       text: numbersBeforeCursor + value.toString() + numbersAfterCursor,
@@ -116,7 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _clearTextSelection() {
     final currentNumbers = _controller.text;
-    final textBeforeSelection = currentNumbers.substring(0, cursorStartPosition);
+    final textBeforeSelection =
+        currentNumbers.substring(0, cursorStartPosition);
     final textAfterSelection = currentNumbers.substring(cursorEndPosition);
     _controller.value = _controller.value.copyWith(
       text: textBeforeSelection + textAfterSelection,
@@ -172,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _clearAllBeforeCursor() {
     _controller.value = _controller.value.copyWith(
       text: _controller.text.substring(cursorStartPosition),
-      selection: const TextSelection.collapsed(offset: 0),
+      selection: const TextSelection.collapsed(offset: -1),
     );
   }
 
@@ -187,14 +189,17 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Expanded(
             child: Center(
-                child: TextField(
-              controller: _controller,
-              autofocus: true,
-              showCursor: true,
-              keyboardType: TextInputType.none,
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: TextField(
+                controller: _controller,
+                autofocus: true,
+                showCursor: true,
+                keyboardType: TextInputType.none,
+                decoration: const InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                ),
               ),
             )),
           ),
