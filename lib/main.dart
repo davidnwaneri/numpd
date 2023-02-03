@@ -42,10 +42,10 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  int get cursorBasePosition => _controller.selection.baseOffset;
-  int get cursorExtentPosition => _controller.selection.extentOffset;
-  bool get isTextSelected => cursorBasePosition != cursorExtentPosition;
-  bool get isCursorAtEnd => cursorBasePosition == _controller.text.length;
+  int get cursorStartPosition => _controller.selection.baseOffset;
+  int get cursorEndPosition => _controller.selection.extentOffset;
+  bool get isTextSelected => cursorStartPosition != cursorEndPosition;
+  bool get isCursorAtEnd => cursorStartPosition == _controller.text.length;
 
   void inputNumber(int value) {
     if (isTextSelected) {
@@ -59,24 +59,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _replaceTextSelection(int value) {
     final text = _controller.text;
-    final firstPart = text.substring(0, cursorBasePosition);
-    final lastPart = text.substring(cursorExtentPosition);
+    final firstPart = text.substring(0, cursorStartPosition);
+    final lastPart = text.substring(cursorEndPosition);
     _controller.value = _controller.value.copyWith(
       text: firstPart + value.toString() + lastPart,
       selection: TextSelection.collapsed(
-        offset: cursorBasePosition + 1,
+        offset: cursorStartPosition + 1,
       ),
     );
   }
 
   void _inputNumberBetweenText(int value) {
     final text = _controller.text;
-    final firstPart = text.substring(0, cursorBasePosition);
-    final lastPart = text.substring(cursorBasePosition);
+    final firstPart = text.substring(0, cursorStartPosition);
+    final lastPart = text.substring(cursorStartPosition);
     _controller.value = _controller.value.copyWith(
       text: firstPart + value.toString() + lastPart,
       selection: TextSelection.collapsed(
-        offset: cursorBasePosition + 1,
+        offset: cursorStartPosition + 1,
       ),
     );
   }
