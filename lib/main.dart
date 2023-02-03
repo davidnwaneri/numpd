@@ -49,33 +49,45 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void inputNumber(int value) {
     if (isTextSelected) {
-      final text = _controller.text;
-      final firstPart = text.substring(0, cursorBasePosition);
-      final lastPart = text.substring(cursorExtentPosition);
-      _controller.value = _controller.value.copyWith(
-        text: firstPart + value.toString() + lastPart,
-        selection: TextSelection.collapsed(
-          offset: cursorBasePosition + 1,
-        ),
-      );
+      _replaceTextSelection(value);
     } else if (isCursorAtEnd) {
-      _controller.value = _controller.value.copyWith(
-        text: _controller.text + value.toString(),
-        selection: TextSelection.collapsed(
-          offset: _controller.text.length + 1,
-        ),
-      );
+      _inputNumberAtEnd(value);
     } else {
-      final text = _controller.text;
-      final firstPart = text.substring(0, cursorBasePosition);
-      final lastPart = text.substring(cursorBasePosition);
-      _controller.value = _controller.value.copyWith(
-        text: firstPart + value.toString() + lastPart,
-        selection: TextSelection.collapsed(
-          offset: cursorBasePosition + 1,
-        ),
-      );
+      _inputNumberBetweenText(value);
     }
+  }
+
+  void _replaceTextSelection(int value) {
+    final text = _controller.text;
+    final firstPart = text.substring(0, cursorBasePosition);
+    final lastPart = text.substring(cursorExtentPosition);
+    _controller.value = _controller.value.copyWith(
+      text: firstPart + value.toString() + lastPart,
+      selection: TextSelection.collapsed(
+        offset: cursorBasePosition + 1,
+      ),
+    );
+  }
+
+  void _inputNumberBetweenText(int value) {
+    final text = _controller.text;
+    final firstPart = text.substring(0, cursorBasePosition);
+    final lastPart = text.substring(cursorBasePosition);
+    _controller.value = _controller.value.copyWith(
+      text: firstPart + value.toString() + lastPart,
+      selection: TextSelection.collapsed(
+        offset: cursorBasePosition + 1,
+      ),
+    );
+  }
+
+  void _inputNumberAtEnd(int value) {
+    _controller.value = _controller.value.copyWith(
+      text: _controller.text + value.toString(),
+      selection: TextSelection.collapsed(
+        offset: _controller.text.length + 1,
+      ),
+    );
   }
 
   void clearLastInput() {
