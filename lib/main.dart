@@ -167,14 +167,14 @@ class _CustomNumPadScreenState extends State<CustomNumPadScreen> {
   void _clearAll() {
     _controller.value = _controller.value.copyWith(
       text: '',
-      selection: const TextSelection.collapsed(offset: -1),
+      selection: const TextSelection.collapsed(offset: 0),
     );
   }
 
   void _clearAllBeforeCursor() {
     _controller.value = _controller.value.copyWith(
       text: _controller.text.substring(cursorStartPosition),
-      selection: const TextSelection.collapsed(offset: -1),
+      selection: const TextSelection.collapsed(offset: 0),
     );
   }
 
