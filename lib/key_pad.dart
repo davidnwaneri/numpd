@@ -5,7 +5,7 @@ class KeyPad extends StatelessWidget {
   const KeyPad({
     super.key,
     required this.number,
-    required this.onKeyPress, 
+    required this.onKeyPress,
   });
 
   final int number;
@@ -13,12 +13,19 @@ class KeyPad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: (){
-        onKeyPress();
-        HapticFeedback.lightImpact();
-      },
-      child: Text('$number'),
+    return Container(
+      margin: const EdgeInsets.all(10),
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: const Color(0xFFF1F4FE),
+          shape: const CircleBorder(),
+        ),
+        onPressed: () {
+          onKeyPress();
+          HapticFeedback.lightImpact();
+        },
+        child: Text('$number'),
+      ),
     );
   }
 }

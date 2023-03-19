@@ -195,7 +195,8 @@ class _CustomNumPadScreenState extends State<CustomNumPadScreen> {
                 controller: _controller,
                 autofocus: true,
                 showCursor: true,
-                keyboardType: TextInputType.none,
+                // keyboardType: TextInputType.none,
+                readOnly: true,
                 decoration: const InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
@@ -204,6 +205,7 @@ class _CustomNumPadScreenState extends State<CustomNumPadScreen> {
             )),
           ),
           Expanded(
+            flex: 2,
             child: NumericPad(
               onInputNumber: inputNumber,
               onClearLastInput: clearLastInput,

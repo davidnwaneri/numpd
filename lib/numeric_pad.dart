@@ -16,46 +16,43 @@ class NumericPad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: Colors.white10,
-      child: Column(
-        children: [
-          for (int i = 1; i < 4; i++)
-            Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  for (int j = 1; j < 4; j++)
-                    Expanded(
-                      child: KeyPad(
-                        number: (i - 1) * 3 + j,
-                        onKeyPress: () => onInputNumber((i - 1) * 3 + j),
-                      ),
-                    ),
-                ],
-              ),
-            ),
+    return Column(
+      children: [
+        for (int i = 1; i < 4; i++)
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Spacer(),
-                Expanded(
+                for (int j = 1; j < 4; j++)
+                  Expanded(
                     child: KeyPad(
-                  number: 0,
-                  onKeyPress: () => onInputNumber(0),
-                )),
-                Expanded(
-                  child: ClearButton(
-                    onClearLastInput: onClearLastInput,
-                    onClearAll: onClearAll,
+                      number: (i - 1) * 3 + j,
+                      onKeyPress: () => onInputNumber((i - 1) * 3 + j),
+                    ),
                   ),
-                ),
               ],
             ),
           ),
-        ],
-      ),
+        Expanded(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Spacer(),
+              Expanded(
+                  child: KeyPad(
+                number: 0,
+                onKeyPress: () => onInputNumber(0),
+              )),
+              Expanded(
+                child: ClearButton(
+                  onClearLastInput: onClearLastInput,
+                  onClearAll: onClearAll,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:numpad/main.dart';
-import 'package:numpad/state_notifier.dart';
 
 class ClearButton extends StatelessWidget {
   const ClearButton({
@@ -20,7 +18,7 @@ class ClearButton extends StatelessWidget {
         onPressed: onClearLastInput,
         icon: const Icon(
           Icons.backspace,
-          color: Color(0xFF1D1E33),
+          color: Color(0xFFF1F4FE),
         ),
       ),
     );
